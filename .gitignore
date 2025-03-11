@@ -1,0 +1,16 @@
+# folders
+node_modules
+build
+dist
+coverage
+
+# files
+.eslintcache
+.prettiercache
+.env
+.env.test
+.DS_Store
+
+# database
+db/app.db
+db/test.db
