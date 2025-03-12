@@ -21,6 +21,7 @@ export type OrganizationCreateInput = Omit<Organization, 'id' | 'created_at'>;
 export interface FindManyNearbyParams {
   latitude: number;
   longitude: number;
+  maxDistance?: number;
 }
 
 export interface OrganizationsRepository {

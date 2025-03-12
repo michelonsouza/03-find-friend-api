@@ -9,8 +9,8 @@ import type {
 import { getDistanceBetweenCoordinates } from '@/utils/get-distance-between-coordinates';
 
 export class InMemoryOrganizationsRepository
-  // eslint-disable-next-line prettier/prettier
-  implements OrganizationsRepository {
+  implements OrganizationsRepository
+{
   #organizations: Organization[] = [];
 
   findById(id: string): Promise<Organization | null> {
@@ -51,6 +51,7 @@ export class InMemoryOrganizationsRepository
   findManyNearby({
     latitude,
     longitude,
+    maxDistance = 10,
   }: FindManyNearbyParams): Promise<Organization[]> {
     const organizations = this.#organizations.filter(org => {
       const distance = getDistanceBetweenCoordinates(
@@ -64,7 +65,7 @@ export class InMemoryOrganizationsRepository
         },
       );
 
-      return distance <= 10;
+      return distance <= maxDistance;
     });
 
     return Promise.resolve(organizations);
