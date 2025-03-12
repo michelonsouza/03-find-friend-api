@@ -1,8 +1,8 @@
 import { InMemoryOrganizationsRepository } from '@/repositories/in-memory/in-memory-organizations-repository';
 import { InMemoryPetsRepository } from '@/repositories/in-memory/in-memory-pets-repository';
 import type { OrganizationCreateInput } from '@/repositories/organizations-repository';
-import { makeCreateOrganizationInput } from '@/tests/factory/make-organization';
-import { makeCreatePetInput } from '@/tests/factory/make-pet';
+import { makeCreateOrganizationInput } from '@/utils/tests/factory/make-organization';
+import { makeCreatePetInput } from '@/utils/tests/factory/make-pet';
 
 import { CreatePetUseCase } from './create-pet-use-case';
 import { OrganizationNotFountError } from './errors/organization-not-found-error';

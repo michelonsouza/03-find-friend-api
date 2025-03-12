@@ -2,7 +2,7 @@ import { fakerPT_BR as faker } from '@faker-js/faker';
 import { compare } from 'bcryptjs';
 
 import { InMemoryOrganizationsRepository } from '@/repositories/in-memory/in-memory-organizations-repository';
-import { makeCreateOrganizationInput } from '@/tests/factory/make-organization';
+import { makeCreateOrganizationInput } from '@/utils/tests/factory/make-organization';
 
 import { CreateOrganizationUseCase } from './create-organization-use-case';
 import { OrganizationAlreadyExistsError } from './errors/organization-already-exists';
