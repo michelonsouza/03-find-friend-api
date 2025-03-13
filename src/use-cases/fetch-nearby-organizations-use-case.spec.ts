@@ -3,15 +3,15 @@ import { fakerPT_BR as faker } from '@faker-js/faker';
 import { InMemoryOrganizationsRepository } from '@/repositories/in-memory/in-memory-organizations-repository';
 import { makeCreateOrganizationInput } from '@/utils/tests/factory/make-organization';
 
-import { FindNearbyOrganizationsUseCase } from './find-nearby-organizations-use-case';
+import { FetchNearbyOrganizationsUseCase } from './fetch-nearby-organizations-use-case';
 
 let organizationsRepository: InMemoryOrganizationsRepository;
-let sut: FindNearbyOrganizationsUseCase;
+let sut: FetchNearbyOrganizationsUseCase;
 
-describe('FindNearbyOrganizationsUseCase', () => {
+describe('FetchNearbyOrganizationsUseCase', () => {
   beforeEach(() => {
     organizationsRepository = new InMemoryOrganizationsRepository();
-    sut = new FindNearbyOrganizationsUseCase(organizationsRepository);
+    sut = new FetchNearbyOrganizationsUseCase(organizationsRepository);
   });
 
   it('should be able to find organizations by location', async () => {
@@ -52,8 +52,6 @@ describe('FindNearbyOrganizationsUseCase', () => {
       userLongitude: firstOrg.longitude,
     });
     const lengthComparison = Math.ceil(organizations.length / 2);
-
-    console.log({ data: response.data, inputs: orgsInput });
 
     expect(response.data).toEqual(
       expect.arrayContaining([expect.objectContaining(firstOrg)]),

@@ -4,7 +4,10 @@ import type { OrganizationCreateInput } from '@/repositories/organizations-repos
 import { makeCreateOrganizationInput } from '@/utils/tests/factory/make-organization';
 import { makeCreatePetInput } from '@/utils/tests/factory/make-pet';
 
-import { CreatePetUseCase } from './create-pet-use-case';
+import {
+  CreatePetUseCase,
+  CreatePetUseCaseParams,
+} from './create-pet-use-case';
 import { OrganizationNotFountError } from './errors/organization-not-found-error';
 
 let organizationsRepository: InMemoryOrganizationsRepository;
@@ -35,7 +38,9 @@ describe('CreatePetUseCase', () => {
     const organization =
       await organizationsRepository.create(organizationInput);
 
-    const petInput = makeCreatePetInput(organization.id);
+    const petInput = makeCreatePetInput<CreatePetUseCaseParams>(
+      organization.id,
+    );
 
     const response = await sut.execute(petInput);
     const {
@@ -54,7 +59,7 @@ describe('CreatePetUseCase', () => {
   });
 
   it('should not be able to create a pet with invalid organization', async () => {
-    const petInput = makeCreatePetInput();
+    const petInput = makeCreatePetInput<CreatePetUseCaseParams>();
 
     await expect(sut.execute(petInput)).rejects.toBeInstanceOf(
       OrganizationNotFountError,

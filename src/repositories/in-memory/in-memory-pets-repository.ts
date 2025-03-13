@@ -43,13 +43,17 @@ export class InMemoryPetsRepository implements PetsRepository {
     size,
   }: FindAllParams): Promise<Pet[]> {
     const orgsByCity = await this.#organizationsRepository.findByCity(city);
+    const pets = this.#pets.filter(pet => {
+      const comparisons = {
+        organization_id: orgsByCity.some(org => org.id === pet.organization_id),
+        age: age ? pet.age === age : true,
+        environment: environment ? pet.environment === environment : true,
+        size: size ? pet.size === size : true,
+        energy_level: energy_level ? pet.energy_level === energy_level : true,
+      };
 
-    const pets = this.#pets
-      .filter(pet => orgsByCity.some(org => org.id === pet.organization_id))
-      .filter(pet => (age ? pet.age === age : true))
-      .filter(pet => (environment ? pet.environment === environment : true))
-      .filter(pet => (size ? pet.size === size : true))
-      .filter(pet => (energy_level ? pet.energy_level === energy_level : true));
+      return Object.values(comparisons).every(Boolean);
+    });
 
     return Promise.resolve(pets);
   }

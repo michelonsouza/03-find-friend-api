@@ -3,7 +3,7 @@ import type { Pet, PetsRepository } from '@/repositories/pets-repository';
 
 import { OrganizationNotFountError } from './errors/organization-not-found-error';
 
-interface CreatePetUseCaseParams {
+export interface CreatePetUseCaseParams {
   age: string;
   name: string;
   size: string;

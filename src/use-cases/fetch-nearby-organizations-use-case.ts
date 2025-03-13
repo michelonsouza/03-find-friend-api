@@ -3,17 +3,17 @@ import type {
   OrganizationsRepository,
 } from '@/repositories/organizations-repository';
 
-interface FindNearbyOrganizationsUseCaseParams {
+interface FetchNearbyOrganizationsUseCaseParams {
   userLatitude: number;
   userLongitude: number;
   maxDistance?: number;
 }
 
-interface FindNearbyOrganizationsUseCaseResponse {
+interface FetchNearbyOrganizationsUseCaseResponse {
   data: Organization[];
 }
 
-export class FindNearbyOrganizationsUseCase {
+export class FetchNearbyOrganizationsUseCase {
   #organizationsRepository: OrganizationsRepository;
 
   constructor(organizationsRepository: OrganizationsRepository) {
@@ -24,7 +24,7 @@ export class FindNearbyOrganizationsUseCase {
     userLatitude,
     userLongitude,
     maxDistance = 10,
-  }: FindNearbyOrganizationsUseCaseParams): Promise<FindNearbyOrganizationsUseCaseResponse> {
+  }: FetchNearbyOrganizationsUseCaseParams): Promise<FetchNearbyOrganizationsUseCaseResponse> {
     const organizations = await this.#organizationsRepository.findManyNearby({
       latitude: userLatitude,
       longitude: userLongitude,

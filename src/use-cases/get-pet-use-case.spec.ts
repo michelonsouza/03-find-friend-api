@@ -6,6 +6,7 @@ import type { OrganizationCreateInput } from '@/repositories/organizations-repos
 import { makeCreateOrganizationInput } from '@/utils/tests/factory/make-organization';
 import { makeCreatePetInput } from '@/utils/tests/factory/make-pet';
 
+import { CreatePetUseCaseParams } from './create-pet-use-case';
 import { PetNotFountError } from './errors/pet-not-found-error';
 import { GetPetUseCase } from './get-pet-use-case';
 
@@ -44,7 +45,7 @@ describe('CreatePetUseCase', () => {
           energyLevel: energy_level,
           organizationId: organization_id,
           ...data
-        } = makeCreatePetInput(organization.id);
+        } = makeCreatePetInput<CreatePetUseCaseParams>(organization.id);
 
         return {
           energy_level,
