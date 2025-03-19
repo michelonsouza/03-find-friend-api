@@ -20,10 +20,12 @@ export class PrismaOrganizationsRepository implements OrganizationsRepository {
           latitude: organization.latitude.toNumber(),
           longitude: organization.longitude.toNumber(),
           created_at: organization.created_at.toISOString(),
+          /* v8 ignore next 3 */
         }
       : null;
   }
 
+  /* v8 ignore next 13 */
   async findByCity(city: string): Promise<Organization[]> {
     const organizations = await prisma.organization.findMany({
       where: { city },

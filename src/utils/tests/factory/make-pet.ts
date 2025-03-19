@@ -5,7 +5,7 @@ export function makeCreatePetInput<ReturnType>(
   convert?: boolean,
 ) {
   const petInput = {
-    age: faker.number.int({ min: 1, max: 15 }).toString(),
+    age: String(faker.number.int({ min: 1, max: 15 })),
     name: faker.animal.petName(),
     size: faker.helpers.arrayElement(['small', 'medium', 'large']),
     about: faker.lorem.paragraph(),
